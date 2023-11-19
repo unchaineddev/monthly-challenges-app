@@ -14,8 +14,11 @@ from django.http import HttpResponseNotFound  #for 404 pages
 
 # def march(request):
 #     return HttpResponse("Go for a Jog!")
-    
 
+def my_monthly_challenge_number(request, month):
+    return HttpResponse(month)
+  
+  
 def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
     text = None
     
@@ -33,3 +36,5 @@ def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
         return HttpResponseNotFound("404 PAGE NOT FOUND!")
 
     return HttpResponse(text)
+
+
