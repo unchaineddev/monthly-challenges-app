@@ -1,6 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.http import HttpResponseNotFound  #for 404 pages
+from django.http import HttpResponseNotFound
+
+
+challenges = {
+    'january': "Work out!",
+    'february': "Eat Healthy!",
+    'march': "Go for a Walk!",
+    'april': "Play a sport!",
+    'may': "May the Job Search begin!",
+    'june': "Deploy an app!",
+    'july': "Solve problems everyday!",
+    'august': "Read a book!",
+    'september': "Sleep for 8 hours",
+    'october': "Travel to a new place!",
+    'november': "Learn something new!",
+    'december': "Relax for 15 mins!"
+}
 
 # Create your views here.
 
@@ -18,23 +34,11 @@ from django.http import HttpResponseNotFound  #for 404 pages
 def my_monthly_challenge_number(request, month):
     return HttpResponse(month)
   
-  
+
 def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
-    text = None
-    
-    if month == 'january':
-        text = "Work out!"
-    elif month == 'february':
-        text = "Eat Healthy!"
-    elif month == 'march':
-        text = "Go for a Walk!"
-    elif month == 'april':
-        text = "Play a sport!"
-    elif month == 'may':
-        text = "May the Job Search begin!"
-    else:
-        return HttpResponseNotFound("404 PAGE NOT FOUND!")
 
-    return HttpResponse(text)
-
-
+    try:
+        final_text = challenges[month]
+        return HttpResponse(final_text)
+    except:
+        return HttpResponseNotFound("404 NOT FOUND!")
