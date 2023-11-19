@@ -5,4 +5,7 @@ from django.shortcuts import render
 
 # first view
 def first_view(request):
-    return HttpResponse("This is working!")
+    return HttpResponse("Work out!")
+
+def second_view(request):
+    return HttpResponse("Eat Healthy!")
