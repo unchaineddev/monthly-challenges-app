@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, response
 from django.shortcuts import redirect, render
 from django.http import HttpResponseNotFound # 404 pages
 from django.http import HttpResponseRedirect  # redirect links
@@ -34,6 +34,20 @@ challenges = {
 # def march(request):
 #     return HttpResponse("Go for a Jog!")
 
+
+def my_local_host(request):
+    list_items = ""
+    all_months =  list(challenges.keys())
+
+    for month in all_months:
+        month_path = reverse("my-challenge", args=[month])  # reverse function
+        list_items += f'<li><ul><a href="{month_path}">{month.capitalize()}</a></ul></li>'
+
+    response_data = f'<ul>{list_items}</ul>'
+    
+    return HttpResponse(response_data)
+
+
 def my_monthly_challenge_number(request, month):
     all_months =  list(challenges.keys())
     if month > len(all_months):
@@ -48,6 +62,8 @@ def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
 
     try:
         final_text = challenges[month] # accessing the key
-        return HttpResponse(final_text)
+        response_data = f"<h1>{final_text}</h1>"
+        return HttpResponse(response_data)
+        # return HttpResponse(final_text)
     except:
-        return HttpResponseNotFound("404 NOT FOUND!")
+        return HttpResponseNotFound("<h1>404 NOT FOUND!</h1>")
