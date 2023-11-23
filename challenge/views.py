@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect  # redirect links
 
 from django.urls import reverse # reverse function
 
+from django.template.loader import render_to_string
+
 
 challenges = {
     'january': "Work out!",
@@ -46,14 +48,14 @@ def my_local_host(request):
 
     response_data = f'<ul>{list_items}</ul>'
     
-    return HttpResponse(response_data)
+    return HttpResponse(response_data) 
 
 
 # incase you want to dynamically request using a different key (int)
 def my_monthly_challenge_number(request, month):
     all_months =  list(challenges.keys())
     if month > len(all_months):
-        return HttpResponseNotFound("Invalid! try again!")
+        return HttpResponseNotFound("<h1>Invalid! try again!</h1>")
 
     forward_month = all_months[month - 1]  # -1 because index starts with 0 
     redirect_path = reverse("my-challenge", args=[forward_month])  # reverse function
@@ -64,10 +66,11 @@ def my_monthly_challenge_number(request, month):
 #  Request for one key and get a response
 def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
 
-    try:
+    # try:
         final_text = challenges[month] # accessing the key
         response_data = f"<h1>{final_text}</h1>"
+        response_data = render_to_string("challenge/main.html")   # render htmls
         return HttpResponse(response_data)
         # return HttpResponse(final_text)
-    except:
-        return HttpResponseNotFound("<h1>404 NOT FOUND!</h1>")
+    # except:
+    #     return HttpResponseNotFound("<h1>404 NOT FOUND!</h1>")

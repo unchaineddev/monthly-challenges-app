@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'challenge',   # add your app name
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,8 +55,10 @@ ROOT_URLCONF = 'monthly_challenge.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+           # BASE_DIR / "challenge" / "templates"
+        ],
+        'APP_DIRS': True,  # automatically looks for templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

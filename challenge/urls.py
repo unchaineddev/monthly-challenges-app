@@ -13,4 +13,3 @@ urlpatterns = [
     # path("<str:month>", views.my_monthly_challenge)   # str:month --> passed as a string
     path("<str:month>", views.my_monthly_challenge, name="my-challenge") # reverse function
 ]
-
