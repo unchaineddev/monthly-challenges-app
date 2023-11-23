@@ -1,7 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponseNotFound # 404 pages
 from django.http import HttpResponseRedirect  # redirect links
+
+from django.urls import reverse # reverse function
 
 
 challenges = {
@@ -38,8 +40,9 @@ def my_monthly_challenge_number(request, month):
         return HttpResponseNotFound("Invalid! try again!")
 
     forward_month = all_months[month - 1]  # -1 because index starts with 0 
-    return HttpResponseRedirect("/challenge/" + forward_month)  # redirect links
-  
+    redirect_path = reverse("my-challenge", args=[forward_month])  # reverse function
+    # return HttpResponseRedirect("/challenge/" + forward_month)  # redirect links
+    return HttpResponseRedirect(redirect_path)
 
 def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
 
@@ -48,4 +51,3 @@ def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
         return HttpResponse(final_text)
     except:
         return HttpResponseNotFound("404 NOT FOUND!")
- 
