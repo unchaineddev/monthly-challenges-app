@@ -35,6 +35,7 @@ challenges = {
 #     return HttpResponse("Go for a Jog!")
 
 
+# running using localhost and showing all results in the page
 def my_local_host(request):
     list_items = ""
     all_months =  list(challenges.keys())
@@ -48,6 +49,7 @@ def my_local_host(request):
     return HttpResponse(response_data)
 
 
+# incase you want to dynamically request using a different key (int)
 def my_monthly_challenge_number(request, month):
     all_months =  list(challenges.keys())
     if month > len(all_months):
@@ -58,6 +60,8 @@ def my_monthly_challenge_number(request, month):
     # return HttpResponseRedirect("/challenge/" + forward_month)  # redirect links
     return HttpResponseRedirect(redirect_path)
 
+
+#  Request for one key and get a response
 def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
 
     try:
