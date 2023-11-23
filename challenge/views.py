@@ -68,10 +68,15 @@ def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
 
     try:
         final_text = challenges[month] # accessing the key
-        return render(request, "challenge/main.html", {"text": final_text})
+        return render(request, "challenge/main.html", {
+            "text": final_text,
+            "month": month
+            }
+            )
         # response_data = f"<h1>{final_text}</h1>"
         # response_data = render_to_string("challenge/main.html")   # render htmls
         # return HttpResponse(response_data)
         # return HttpResponse(final_text)
     except:
         return HttpResponseNotFound("<h1>404 NOT FOUND!</h1>")
+ 
