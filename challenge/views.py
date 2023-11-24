@@ -1,12 +1,13 @@
 from django.http import HttpResponse, response
 from django.shortcuts import redirect, render
 from django.http import HttpResponseNotFound # 404 pages
-from django.http import HttpResponseRedirect  # redirect links
+from django.http import HttpResponseRedirect
+from django.template.loader import render_to_string  # redirect links
 
 from django.urls import reverse # reverse function
 
-# from django.template.loader import render_to_string  --> since shortcuts already imports it
-
+# from django.template.loader import render_to_string  # --> since shortcuts already imports it
+from django.http import Http404
 
 challenges = {
     'january': "Work out!",
@@ -83,5 +84,7 @@ def my_monthly_challenge(request, month):  # month is passed in url i.e  <month>
         # return HttpResponse(response_data)
         # return HttpResponse(final_text)
     except:
-        return HttpResponseNotFound("<h1>404 NOT FOUND!</h1>")
+        raise Http404()
+        # res = render_to_string("404.html")
+        # return HttpResponseNotFound(res)
  
