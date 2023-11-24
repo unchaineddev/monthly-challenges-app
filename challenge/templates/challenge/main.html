@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Monthly Challenges 2024{% endblock title %}
+
+
+{% block css-block %}
+{% comment %} <link rel="stylesheet" href="{% static 'challenges/style.css' %}"> {% endcomment %}
+<link rel="stylesheet" href="{% static 'challenges/main.css' %}">
+{% endblock css-block %}
 
 {% block content %}
 
@@ -11,7 +18,7 @@
     {% if text is not None %} 
         <h2>{{ text }}</h2>
     {% else %}
-        <h3>There is no challenge!</h3>
+        <p class="fallback">There is no challenge!</p>
     {% endif %}
     
 {% endblock content %}
