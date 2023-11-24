@@ -42,13 +42,17 @@ def my_local_host(request):
     list_items = ""
     all_months =  list(challenges.keys())
 
-    for month in all_months:
-        month_path = reverse("my-challenge", args=[month])  # reverse function
-        list_items += f'<li><ul><a href="{month_path}">{month.capitalize()}</a></ul></li>'
+    return render(request,"challenge/index.html", {
+        "months": all_months
+    })
 
-    response_data = f'<ul>{list_items}</ul>'
+    # for month in all_months:
+    #     month_path = reverse("my-challenge", args=[month])  # reverse function
+    #     list_items += f'<li><ul><a href="{month_path}">{month.capitalize()}</a></ul></li>'
+
+    # response_data = f'<ul>{list_items}</ul>'
     
-    return HttpResponse(response_data) 
+    # return HttpResponse(response_data) 
 
 
 # incase you want to dynamically request using a different key (int)
