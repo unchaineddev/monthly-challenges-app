@@ -20,7 +20,8 @@ challenges = {
     'september': "Sleep for 8 hours",
     'october': "Travel to a new place!",
     'november': "Learn something new!",
-    'december': "Relax for 15 mins!"
+    # 'december': "Relax for 15 mins!"
+    'december': None
 }
 
 # Create your views here.
